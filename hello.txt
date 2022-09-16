@@ -3,15 +3,3 @@ def filehasherMD5(fname):
 
 def filehasher(fname):
     return (sha256(open(fname,'rb').read()).hexdigest()).upper()
-
-for fn in FILES:
-    if(re.search(reFNAME, fn)):
-        reFLIST.append(fn)
-        reELIST.append((fn.split('_')[2]).split('.')[0])
-        reHLIST.append(filehasherMD5(fn))
-
-for index, fh in enumerate(reHLIST):
-    if(fh == reELIST[index]):
-        CORRECT = reFLIST[index]
-        break
-        print("Using "+CORRECT+" as record")
