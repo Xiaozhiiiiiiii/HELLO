@@ -1,5 +1,24 @@
-def filehasherMD5(fname):
-    return (md5(open(fname,'rb').read()).hexdigest()).upper()
+try:
+    root = ET.parse(CORRECT).getroot()
+except:
+    while root is None:
+        try:
+            mfile = input("Could not find XML document, enter filename manually? ")
+            mhash = (input("Insert XML md5 for checking?(N for NO or md5) ")).upper()
+            if(mhash != 'N'):
+                if(re.search(reMD5, mhash)):
+                    hash = filehasherMD5(mfile)
+                    if(hash == mhash):
+                        print("XML file's hashing is correct")
+                        root = ET.parse(mfile).getroot()
+                    else:
+                        print("Error, hash value isn't matching, maybe the wrong file or corrupted file?")
+            else:
+                print("Okay! we are not going to check XML file is correct")
+                root = ET.parse(mfile).getroot()
 
-def filehasher(fname):
-    return (sha256(open(fname,'rb').read()).hexdigest()).upper()
+        except:
+            pass
+        print()
+
+print(">>> Start Checking")
