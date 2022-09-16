@@ -1,19 +1,17 @@
+def filehasherMD5(fname):
+    return (md5(open(fname,'rb').read()).hexdigest()).upper()
 
-    /* Configure the MCU and board hardware */
-    hardware_setup();
+def filehasher(fname):
+    return (sha256(open(fname,'rb').read()).hexdigest()).upper()
 
-    /* Enable interrupt and select the I stack or the U stack */
-    R_BSP_SET_PSW(BSP_PRV_PSW_INIT);
+for fn in FILES:
+    if(re.search(reFNAME, fn)):
+        reFLIST.append(fn)
+        reELIST.append((fn.split('_')[2]).split('.')[0])
+        reHLIST.append(filehasherMD5(fn))
 
-#if BSP_CFG_RTOS_USED == 4  /* Renesas RI600V4 & RI600PX */
-    /* Does not change the MCU's user mode to user in Renesas RTOS. */
-#else /* BSP_CFG_RTOS_USED != 4 */
-#if BSP_CFG_RUN_IN_USER_MODE == 1
-    /* Change the MCU's user mode from supervisor to user */
-    #if BSP_CFG_USER_STACK_ENABLE == 1
-        R_BSP_CHG_PMUSR();
-    #else
-        #error "Settings of BSP_CFG_RUN_IN_USER_MODE and BSP_CFG_USER_STACK_ENABLE are inconsistent with each other."
-    #endif
-#endif /* BSP_CFG_RUN_IN_USER_MODE */
-#endif /* BSP_CFG_RTOS_USED */
+for index, fh in enumerate(reHLIST):
+    if(fh == reELIST[index]):
+        CORRECT = reFLIST[index]
+        break
+        print("Using "+CORRECT+" as record")
