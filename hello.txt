@@ -1,10 +1,11 @@
 Korean Suck
 Korean Suck
+
 Korean Suck
 Korean Suck
+La La La
 Korean Suck
-Korean Suck
-Korean Suck
-Korean Suck
-Korean Suck
+Korean Suck  /* Enable the bus error interrupt to catch accesses to illegal/reserved areas of memory */
+    R_BSP_InterruptControl(BSP_INT_SRC_BUS_ERROR, BSP_INT_CMD_INTERRUPT_ENABLE, FIT_NO_PTR);
+
 Korean Suck
