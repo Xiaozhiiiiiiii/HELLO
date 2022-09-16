@@ -1,1 +1,5 @@
-bbbbbbbbbbbbbbbb
+def filehasherMD5(fname):
+    return (md5(open(fname,'rb').read()).hexdigest()).upper()
+
+def filehasher(fname):
+    return (sha256(open(fname,'rb').read()).hexdigest()).upper()
